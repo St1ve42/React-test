@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+.title{
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+}
+/*li, span, h1{*/
+/*    font-weight: 400;*/
+/*    font-family: "Arial", sans-serif;*/
+/*}*/
+
+.scenes img{
+    width: 270px;
+}
+

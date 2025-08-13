@@ -1,0 +1,63 @@
+import {useAppSelector} from "../../redux/hooks/useApp.ts";
+import {useMoviesListQuery} from "../../tanstackquery/hooks/queries/useMoviesListQuery.tsx";
+import {MoviesListCardComponent} from "../moviesListCard/MoviesListCardComponent.tsx";
+import type {UseQueryResult} from "@tanstack/react-query";
+import type {DataMovieType} from "../../models/MovieType.ts";
+import './InitialMoviesListStyle.css'
+import {useErrorBoundary} from "react-error-boundary";
+
+type moviesQueryType = {
+    [key: string]:  UseQueryResult<DataMovieType, Error>
+}
+
+export const InitialMoviesListComponent = () => {
+    const {showBoundary} = useErrorBoundary()
+
+    const {opacity} = useAppSelector(({opacitySlice}) => opacitySlice)
+
+    const moviesQuery: moviesQueryType = {
+        'now_playing': useMoviesListQuery('now_playing', 1),
+        'popular': useMoviesListQuery('popular', 1),
+        'top_rated': useMoviesListQuery('top_rated', 1),
+        'upcoming': useMoviesListQuery('upcoming', 1),
+    }
+
+    if(Object.keys(moviesQuery).some(key => moviesQuery[key].isLoading)){
+        return <div>Loading...</div>
+    }
+
+    const foundErrorElementKey: string | undefined = Object.keys(moviesQuery).find(key => moviesQuery[key].isError)
+    if(foundErrorElementKey){
+        showBoundary(moviesQuery[foundErrorElementKey].error)
+    }
+
+
+    return (
+        <main className="h-[80%] flex flex-col justify-between mt-5 gap-10 mb-10" style={{opacity: opacity}}>
+            <section>
+                <h2 className="initial-movie-title">Now playing</h2>
+                <div className="grid grid-cols-5 gap-3 mt-3">
+                    {moviesQuery['now_playing'].data && moviesQuery['now_playing'].data?.results.map(movie => <MoviesListCardComponent key={movie.id} movie={movie}/>)}
+                </div>
+            </section>
+            <section>
+                <h2 className="initial-movie-title">Popular</h2>
+                <div className="grid grid-cols-5 gap-3 mt-3 ">
+                    {moviesQuery['popular'].data?.results.map(movie => <MoviesListCardComponent key={movie.id} movie={movie}/>)}
+                </div>
+            </section>
+            <section>
+                <h2 className="initial-movie-title">Top rated</h2>
+                <div className="grid grid-cols-5 gap-3 mt-3 ">
+                    {moviesQuery['top_rated'].data?.results.map(movie => <MoviesListCardComponent key={movie.id} movie={movie}/>)}
+                </div>
+            </section>
+            <section>
+                <h2 className="initial-movie-title">Upcoming</h2>
+                <div className="grid grid-cols-5 gap-3 mt-3 ">
+                    {moviesQuery['upcoming'].data?.results.map(movie => <MoviesListCardComponent key={movie.id} movie={movie}/>)}
+                </div>
+            </section>
+        </main>
+    );
+};

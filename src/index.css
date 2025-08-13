@@ -1,0 +1,17 @@
+*{
+    color:white;
+}
+body{
+    height: fit-content;
+    background: #020C24;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+button{
+    cursor: pointer;
+}
+#root{
+    width: 80%;
+    height: 100%;
+}

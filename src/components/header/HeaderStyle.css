@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+input[type='search']{
+    border-radius: 2px;
+    width: 150px;
+}
+input[type='search']:focus{
+    outline: none;
+}
+.pad{
+    padding: 0 50px;
+}
+.logotext{
+    color: #1B9EC2;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+.search-img{
+    border-bottom: 2px white solid;
+}
+.search-img-text{
+    color: #025B;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 1000;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    background: #020C24;
+    display: none;
+    position: absolute;
+    min-width: 500px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    margin-top: 1px;
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.search-dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-searched-content {
+    background: #122038;
+    border-radius: 3px;
+    color: black;
+    display: none;
+    position: absolute;
+    min-width: 400px;
+    max-width: 450px;
+    max-height: 300px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,2);
+    margin-top: 17px;
+    padding: 12px 16px;
+    left: -80px;
+    z-index: 1;
+    overflow: scroll;
+}
+
+.dropdown-searched-content::-webkit-scrollbar {
+    display: none;
+}
+
+.dropdown:hover, .home-link__isActive:hover, .dropdown-content div div:hover{
+    background: #018AB6;
+    border-radius: 2px;
+}
+
+
+
+
