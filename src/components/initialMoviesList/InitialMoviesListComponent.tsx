@@ -5,6 +5,9 @@ import type {UseQueryResult} from "@tanstack/react-query";
 import type {DataMovieType} from "../../models/MovieType.ts";
 import './InitialMoviesListStyle.css'
 import {useErrorBoundary} from "react-error-boundary";
+import {Navigation} from "swiper/modules";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import {MainMoviesListComponent} from "../mainMoviesList/MainMoviesListComponent.tsx";
 
 type moviesQueryType = {
     [key: string]:  UseQueryResult<DataMovieType, Error>
@@ -31,32 +34,37 @@ export const InitialMoviesListComponent = () => {
         showBoundary(moviesQuery[foundErrorElementKey].error)
     }
 
-
     return (
         <main className="h-[80%] flex flex-col justify-between mt-5 gap-10 mb-10" style={{opacity: opacity}}>
             <section>
+                <Swiper modules={[Navigation]} slidesPerView={1} navigation={true}>
+                    {moviesQuery['now_playing'].data && moviesQuery['now_playing'].data?.results.map(movie => <SwiperSlide><MainMoviesListComponent key={movie.id} mainMovie={movie}/></SwiperSlide>)}
+                </Swiper>
+
+            </section>
+            <section>
                 <h2 className="initial-movie-title">Now playing</h2>
-                <div className="grid grid-cols-5 gap-3 mt-3">
-                    {moviesQuery['now_playing'].data && moviesQuery['now_playing'].data?.results.map(movie => <MoviesListCardComponent key={movie.id} movie={movie}/>)}
-                </div>
+                <Swiper modules={[Navigation]} slidesPerView={5} navigation={true}>
+                    {moviesQuery['now_playing'].data && moviesQuery['now_playing'].data?.results.map(movie => <SwiperSlide><MoviesListCardComponent key={movie.id} movie={movie}/></SwiperSlide>)}
+                </Swiper>
             </section>
             <section>
                 <h2 className="initial-movie-title">Popular</h2>
-                <div className="grid grid-cols-5 gap-3 mt-3 ">
-                    {moviesQuery['popular'].data?.results.map(movie => <MoviesListCardComponent key={movie.id} movie={movie}/>)}
-                </div>
+                <Swiper modules={[Navigation]} slidesPerView={5} navigation={true}>
+                    {moviesQuery['popular'].data?.results.map(movie => <SwiperSlide><MoviesListCardComponent key={movie.id} movie={movie}/></SwiperSlide>)}
+                </Swiper>
             </section>
             <section>
                 <h2 className="initial-movie-title">Top rated</h2>
-                <div className="grid grid-cols-5 gap-3 mt-3 ">
-                    {moviesQuery['top_rated'].data?.results.map(movie => <MoviesListCardComponent key={movie.id} movie={movie}/>)}
-                </div>
+                <Swiper modules={[Navigation]} slidesPerView={5} navigation={true}>
+                    {moviesQuery['top_rated'].data?.results.map(movie => <SwiperSlide><MoviesListCardComponent key={movie.id} movie={movie}/></SwiperSlide>)}
+                </Swiper>
             </section>
             <section>
                 <h2 className="initial-movie-title">Upcoming</h2>
-                <div className="grid grid-cols-5 gap-3 mt-3 ">
-                    {moviesQuery['upcoming'].data?.results.map(movie => <MoviesListCardComponent key={movie.id} movie={movie}/>)}
-                </div>
+                <Swiper modules={[Navigation]} slidesPerView={5} navigation={true}>
+                    {moviesQuery['upcoming'].data?.results.map(movie => <SwiperSlide><MoviesListCardComponent key={movie.id} movie={movie}/></SwiperSlide>)}
+                </Swiper>
             </section>
         </main>
     );

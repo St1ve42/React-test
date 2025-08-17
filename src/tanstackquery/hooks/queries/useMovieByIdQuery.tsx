@@ -2,7 +2,7 @@ import {keepPreviousData, useQuery} from "@tanstack/react-query";
 import {getMovieById} from "../../../services/api.service.ts";
 import type {MovieDetailsType} from "../../../models/MovieDetailsType.ts";
 
-export const useMovieDetailsQuery = (movieId: number) => {
+export const useMovieByIdQuery = (movieId: number) => {
     return useQuery({
         queryKey: [movieId],
         queryFn: async () => getMovieById<MovieDetailsType>(movieId),

@@ -1,10 +1,11 @@
 import axios from "axios";
+import type {SortType} from "../models/SortType.ts";
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MWY4YTI2ZTNjYzlmYjY1MDUxYWZhNDI2MWUxNmRlZCIsIm5iZiI6MTc1Mzc4ODA4NS4zMjcwMDAxLCJzdWIiOiI2ODg4YWViNWI3NTZhMmY1N2Q1MmI5MjgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.nm3NzTS6NaGnPdbe8pPaiIBdOfTTQBMhCghSj-PpjgQ'
+        Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`
     }
 })
 
@@ -23,8 +24,9 @@ export async function getGenres<T>(){
     return data.genres as T;
 }
 
-export async function getMoviesByGenre<T>(id: number, page: number) {
-    const {data} = await axiosInstance.get(`discover/movie?with_genres=${id}&page=${page}`);
+export async function getMoviesByGenre<T>(id: number, page: number, sortParams?: SortType) {
+    const url = `discover/movie?with_genres=${id}&page=${page}&sort_by=${sortParams?.option}.${sortParams?.direction}`
+    const {data} = await axiosInstance.get(url);
     return data as T;
 }
 
@@ -33,5 +35,13 @@ export async function getMovieById<T>(id: number) {
     return data as T;
 }
 
+export async function getMovieImages<T>(id: number) {
+    const {data} = await axiosInstance.get(`movie/${id}/images`);
+    return data as T;
+}
 
+export async function getMovieVideos<T>(id: number) {
+    const {data} = await axiosInstance.get(`movie/${id}/videos`);
+    return data as T;
+}
 

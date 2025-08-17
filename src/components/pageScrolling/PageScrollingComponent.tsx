@@ -11,7 +11,6 @@ type PropsType = {
 
 export const PageScrollingComponent: FC<PropsType> = ({startPageOfSelection, pageSelectionOutput, total_pages, handleSelection, setQuery}) => {
     total_pages = total_pages <= 500 ? total_pages : 500
-    console.log(startPageOfSelection)
     if(startPageOfSelection <= 1){
             return (<div className="flex justify-center gap-5">
                 {pageSelectionOutput.map(value => {

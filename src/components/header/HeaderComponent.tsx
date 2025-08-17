@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {useGenreQuery} from "../../tanstackquery/hooks/queries/useGenreQuery.tsx";
 import {useAppDispatch} from "../../redux/hooks/useDispatch.ts";
 import {opacitySlice} from "../../redux/slices/opacity.slice.ts";
-import {type ChangeEventHandler, type MouseEventHandler, useRef, useState} from "react";
+import {type ChangeEventHandler, type MouseEventHandler, useEffect, useRef, useState} from "react";
 import {useMovieBySearchQuery} from "../../tanstackquery/hooks/queries/useMovieBySearchQuery.tsx";
 import {UserInfoComponent} from "../userInfo/UserInfoComponent.tsx";
 import {SearchedMoviesComponent} from "../searchedMovies/SearchedMoviesComponent.tsx";
@@ -15,9 +15,6 @@ export const HeaderComponent = () => {
     const {data} = useGenreQuery()
     const searchedMovies = useMovieBySearchQuery(search)
     const dispatch = useAppDispatch()
-
-
-    if(searchedMovies.isLoading) return <div>Loading...</div>
 
     const MouseGenreHandler: MouseEventHandler<HTMLDivElement> = (e) => {
         if(e.type === "mouseover") {
@@ -38,6 +35,20 @@ export const HeaderComponent = () => {
             setIsVisible(true);
         }
     }
+
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (divRef.current && !divRef.current.contains(event.target)){
+                divRef.current.style.display = "none";
+                dispatch(opacitySlice.actions.setOpacity('1'))
+            }
+        };
+
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, []);
 
     const handleSearchedMovie = () => {
         if(divRef.current){
@@ -64,7 +75,7 @@ export const HeaderComponent = () => {
 
 
     return (
-        <header className="bg-[#020C24] h-15 flex justify-between items-center pad sticky top-0 z-1">
+        <header className="bg-[#020C24] h-15 flex justify-between items-center pad sticky top-0 z-2">
             <div className="flex items-center gap-3">
                 <svg height="40px" width="40px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                      role="img"
@@ -117,3 +128,7 @@ export const HeaderComponent = () => {
         </header>
     );
 };
+
+//TO DO
+//Pressing Enter causes redirection to first searched movie
+//Clean code

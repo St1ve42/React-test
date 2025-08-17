@@ -1,5 +1,48 @@
 .genreTitle{
     font-weight: bold;
     font-size: 30px;
+    margin-left: 10px;
     color: #018AB6;
+}
+.custom-dropdown-container {
+    position: relative;
+    width: 200px;
+    font-family: Arial, sans-serif;
+}
+
+.dropdown-header, .dropdown-list {
+    text-align: center;
+}
+
+.dropdown-header {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #122038;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    list-style: none;
+    margin: 5px 0 0 0;
+    padding: 0;
+    /*border: 1px solid black;*/
+    border-radius: 4px;
+    background-color: #122038;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-list-item {
+    border-bottom: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-list-item:hover {
+    background-color: #018AB6;
 }

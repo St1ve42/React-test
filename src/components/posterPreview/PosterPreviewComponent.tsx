@@ -4,10 +4,11 @@ import type {MovieDetailsType} from "../../models/MovieDetailsType.ts";
 
 type PropsType = {
     movie: MovieType | MovieDetailsType,
+    height?: number
 }
 
-export const PosterPreviewComponent: FC<PropsType> = ({movie}) => {
+export const PosterPreviewComponent: FC<PropsType> = ({movie, height}) => {
     return (
-        <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title}/>
+        <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} style={{height: `${height}px`}}/>
     );
 };

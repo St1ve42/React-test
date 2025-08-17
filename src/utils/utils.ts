@@ -1,3 +1,5 @@
+export const STUB = '-'
+
 export const COLOR_GENRES: {[key: string]: [string, string]} = {
     "Action": ["#e74c3c", "#FFFFFF"],
     "Adventure": ["#3498db", "#FFFFFF"],
@@ -27,3 +29,5 @@ export const pageSelection = (startPageOfSelection: number): number[] => {
     }
     return pages
 }
+//TODOList
+// add moments of film in movieInfo
