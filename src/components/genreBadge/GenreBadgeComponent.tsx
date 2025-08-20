@@ -9,7 +9,7 @@ type PropsType = {
 
 export const GenreBadgeComponent: FC<PropsType> = ({bgColor, textColor, children}) => {
     return (
-        <span className={`rounded-sm font-bold leading-5 ml-1 mr-1 align-baseline text-center size-fit p-[2.5px]`} style = {{background: bgColor, color: textColor}}>
+        <span className={`rounded-sm font-bold leading-5 mr-3 align-baseline text-center size-fit p-[2.5px]`} style = {{background: bgColor, color: textColor}}>
             {children}
         </span>
     );

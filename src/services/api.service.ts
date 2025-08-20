@@ -1,5 +1,8 @@
 import axios from "axios";
 import type {SortType} from "../models/SortType.ts";
+import type {MovieType} from "../models/MovieType.ts";
+import type {ImageType} from "../models/ImageType.ts";
+import type {GenreType} from "../models/GenreType.ts";
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
@@ -20,13 +23,12 @@ export async function getMovieBySearch<T>(query: string) {
 }
 
 export async function getGenres<T>(){
-    const {data} = await axiosInstance.get(`genre/movie/list?language=en`);
+    const {data}: {data: {genres: GenreType[]}} = await axiosInstance.get(`genre/movie/list?language=en`);
     return data.genres as T;
 }
 
 export async function getMoviesByGenre<T>(id: number, page: number, sortParams?: SortType) {
-    const url = `discover/movie?with_genres=${id}&page=${page}&sort_by=${sortParams?.option}.${sortParams?.direction}`
-    const {data} = await axiosInstance.get(url);
+    const {data} = await axiosInstance.get(`discover/movie?with_genres=${id}&page=${page}&sort_by=${sortParams?.option}.${sortParams?.direction}`);
     return data as T;
 }
 
@@ -36,12 +38,12 @@ export async function getMovieById<T>(id: number) {
 }
 
 export async function getMovieImages<T>(id: number) {
-    const {data} = await axiosInstance.get(`movie/${id}/images`);
-    return data as T;
+    const {data}: {data: {backdrops: ImageType[]}} = await axiosInstance.get(`movie/${id}/images`);
+    return data.backdrops as T;
 }
 
 export async function getMovieVideos<T>(id: number) {
-    const {data} = await axiosInstance.get(`movie/${id}/videos`);
-    return data as T;
+    const {data}: {data: {results: MovieType[]}} = await axiosInstance.get(`movie/${id}/videos`);
+    return data.results as T;
 }
 

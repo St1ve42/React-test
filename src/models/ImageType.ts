@@ -1,4 +1,4 @@
-export type ImageInfoType = {
+export type ImageType = {
   aspect_ratio: number;
   height: number;
   iso_639_1?: unknown;
@@ -6,8 +6,4 @@ export type ImageInfoType = {
   vote_average: number;
   vote_count: number;
   width: number;
-}
-
-export type DataMovieImagesType = {
-  backdrops: ImageInfoType[]
 }

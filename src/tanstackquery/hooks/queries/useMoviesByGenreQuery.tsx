@@ -6,7 +6,7 @@ import type {SortType} from "../../../models/SortType.ts";
 const optionItemsParams: {[key: string]: string} = {"Popularity": "popularity", "Primary release date": "primary_release_date", "Average vote": "vote_average"}
 const directionItemsParams: {[key: string]: string} = {"ascending": "asc", "descending": "desc"}
 
-export const useMovieByGenreQuery = (id: number, page: number, sortParams?: SortType) => {
+export const useMoviesByGenreQuery = (id: number, page: number, sortParams?: SortType) => {
     if(sortParams && sortParams.option && sortParams.direction){
         sortParams = {option: optionItemsParams[sortParams["option"]], direction: directionItemsParams[sortParams["direction"]]}
     }

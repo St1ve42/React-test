@@ -13,7 +13,7 @@ export const SearchedMoviesComponent: FC<PropsType> = ({movie}) => {
     return (
         <div className="mb-11 flex">
             <div className="w-[40%] h-full">
-                {movie.poster_path ? <PosterPreviewComponent movie={movie}/> : <img src={image_not_found} alt={"image not found"}/>}
+                {movie.poster_path ? <PosterPreviewComponent movie={movie}/> : <img className="h-[200px]" src={image_not_found} alt={"image not found"}/>}
             </div>
             <div className="w-[60%] ml-2 flex flex-col justify-between">
                 <div className="flex flex-col gap-2">

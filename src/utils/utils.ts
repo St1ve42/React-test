@@ -22,6 +22,25 @@ export const COLOR_GENRES: {[key: string]: [string, string]} = {
     "Western": ["#a0522d", "#FFFFFF"]
 };
 
+export const SLIDES_PER_VIEW = 4
+export const breakpoints = {
+    280: {
+        slidesPerView: 1
+    },
+    538: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+    },
+    832: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+    },
+    1152: {
+        slidesPerView: 4,
+        spaceBetween: 30,
+    },
+}
+
 export const pageSelection = (startPageOfSelection: number): number[] => {
     const pages: number[] = []
     for (let i = startPageOfSelection; i < startPageOfSelection + 3; i++) {
@@ -29,5 +48,17 @@ export const pageSelection = (startPageOfSelection: number): number[] => {
     }
     return pages
 }
-//TODOList
-// add moments of film in movieInfo
+
+export const getDate = (date: string) => {
+    let handledDate: Date | string[] | string = ''
+    if(date){
+        handledDate = new Date(date).toDateString().split(" ")
+        handledDate[handledDate.length-2] = handledDate[handledDate.length-2] + ','
+        handledDate.shift()
+        handledDate = handledDate.join(" ")
+    }
+    else{
+        handledDate = STUB
+    }
+    return handledDate
+}

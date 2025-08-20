@@ -1,7 +1,7 @@
-import {MoviesListComponent} from "../components/moviesList/MoviesListComponent.tsx";
+import {MovieListsComponent} from "../components/movieLists/MovieListsComponent.tsx";
 
 export const MoviesPage = () => {
     return (
-        <MoviesListComponent/>
+        <MovieListsComponent/>
     );
 };

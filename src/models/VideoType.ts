@@ -10,7 +10,3 @@ export type MovieVideoType = {
   published_at: string;
   id: string;
 }
-
-export type DataMovieVideoType = {
-    results: MovieVideoType[];
-}
