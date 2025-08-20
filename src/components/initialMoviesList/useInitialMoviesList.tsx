@@ -11,7 +11,7 @@ type moviesQueryType = {
 export const useInitialMoviesList = () => {
     const {showBoundary} = useErrorBoundary()
 
-    const {opacity} = useAppSelector(({opacitySlice}) => opacitySlice)
+    const {opacity} = useAppSelector(({transitionalSlice}) => transitionalSlice)
     const moviesQuery: moviesQueryType = {
         'now_playing': useMovieListsQuery('now_playing', 1),
         'popular': useMovieListsQuery('popular', 1),

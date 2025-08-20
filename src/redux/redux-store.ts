@@ -1,8 +1,8 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {opacitySlice} from "./slices/opacity.slice.ts";
+import {transitionalSlice} from "./slices/transitionalSlice.ts";
 
 export const store = configureStore({
     reducer: {
-       opacitySlice: opacitySlice.reducer
+       transitionalSlice: transitionalSlice.reducer
     }
 });

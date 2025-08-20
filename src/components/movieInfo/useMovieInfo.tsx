@@ -10,7 +10,7 @@ export const useMovieInfo = () => {
     const {showBoundary, resetBoundary} = useErrorBoundary()
     const {movieId} = useParams()
     const [id, setId] = useState<number>(Number(movieId))
-    const {opacity} = useAppSelector(({opacitySlice}) => opacitySlice)
+    const {opacity} = useAppSelector(({transitionalSlice}) => transitionalSlice)
     useEffect(() => {
         resetBoundary()
         setId(movieId ? Number(movieId) : 1)

@@ -63,7 +63,7 @@ export const MovieInfoComponent = () => {
                 </div>
             </section>
             <section>
-                <Swiper className="mt-7 mb-7" modules={[Navigation]} slidesPerView={SLIDES_PER_VIEW} navigation={true} breakpoints={breakpoints} loop={true}>
+                <Swiper className="mt-7 mb-7" modules={[Navigation]} slidesPerView={SLIDES_PER_VIEW} navigation={true} breakpoints={breakpoints} loop={movieImagesQuery.data ? movieImagesQuery.data.length > 4 : false}>
                     {movieImagesQuery.data?.slice(0, 8).map((image, index) => <SwiperSlide><img key={index} className="max-[606px]:w-full" width={250} src={`https://image.tmdb.org/t/p/original${image.file_path}`} alt={image.file_path}/></SwiperSlide>)}
                 </Swiper>
             </section>

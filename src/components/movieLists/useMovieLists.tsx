@@ -21,6 +21,9 @@ type GenreIdObjType = {
 
 
 export const useMovieLists = () => {
+    //transitional property
+    const {opacity} = useAppSelector(({transitionalSlice}) => transitionalSlice)
+
     //Params data and their handling
     const {genreId} = useParams()
     const [query, setQuery] = useSearchParams({page: ''})
@@ -28,7 +31,7 @@ export const useMovieLists = () => {
     if(pageString && pageString === "1"){
         setQuery({})
     }
-    const page = pageString ? Number(pageString) : 1
+    const pageNum = pageString ? Number(pageString) : 1
 
     const [cursorGenre, setCursorGenre] = useState<string>(genreId ? genreId : '33')
     useEffect(() => {
@@ -95,41 +98,41 @@ export const useMovieLists = () => {
     const handleSelection = {
         handlePreviousSelection: () => {
             if(startPageOfSelection > 2){
-                setQuery({page: (page-1).toString()})
+                setQuery({page: (pageNum-1).toString()})
             }
         },
         handleNextSelection: () => {
             if(startPageOfSelection <= 498){
-                setQuery({page: (page+1).toString()})
+                setQuery({page: (pageNum+1).toString()})
             }
         }
     }
 
 
     //movie data
-    const moviesQuery: MoviesQueryType = useMoviesByGenreQuery(Number(cursorGenre), page, selectedValue)
+    const moviesQuery: MoviesQueryType = useMoviesByGenreQuery(Number(cursorGenre), pageNum, selectedValue)
     const totalPage = moviesQuery.data ? (moviesQuery.data.total_pages <= 500 ? moviesQuery.data?.total_pages : 500) : 498
 
     //page data
     const [startPageOfSelection, setStartPageOfSelection] = useState(1)
     const pageSelectionOutput: number[] = useMemo(() => pageSelection(startPageOfSelection), [startPageOfSelection])
     useEffect(() => {
-        if(page < 3){
+        if(pageNum < 3){
             setStartPageOfSelection(1)
         }
-        else if(page===3){
-            setStartPageOfSelection(page)
+        else if(pageNum===3){
+            setStartPageOfSelection(pageNum)
         }
-        else if(page > 3 && page < totalPage-2){
-            setStartPageOfSelection(page - 1)
+        else if(pageNum > 3 && pageNum < totalPage-2){
+            setStartPageOfSelection(pageNum - 1)
         }
-        else if(page === totalPage-2){
-            setStartPageOfSelection(page)
+        else if(pageNum === totalPage-2){
+            setStartPageOfSelection(pageNum)
         }
         else{
             setStartPageOfSelection(totalPage-2)
         }
-    }, [page]);
+    }, [pageNum]);
 
     //genre data
     const genreQuery = useGenreQuery();
@@ -139,9 +142,6 @@ export const useMovieLists = () => {
             return accum
         }, {})
     }, [genreQuery.data])
-
-    //transitional css property
-    const {opacity} = useAppSelector(({opacitySlice}) => opacitySlice)
 
     //Loading and Error handling
     const {showBoundary} = useErrorBoundary()

@@ -9,8 +9,25 @@ export const HeaderComponent = () => {
     return (
         <header className="bg-[#020C24] text-xl h-15 flex justify-between items-center pad sticky top-0 z-2">
 
-            {/*Hamburger-menu*/}
             <div className="flex">
+
+                {/*Logo*/}
+                <div className="flex items-center gap-3">
+                    <svg height="40px" width="40px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                         role="img"
+                         className="iconify iconify--emojione" preserveAspectRatio="xMidYMid meet" fill="#000000">
+                        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <circle cx="32" cy="32" r="30" fill="#4fd1d9"></circle>
+                            <path fill="#ffffff" d="M25 12l20 20l-20 20z"></path>
+                        </g>
+                    </svg>
+                    <p>
+                        <Link to={''} className="logotext">KinoLand</Link>
+                    </p>
+                </div>
+                {/*Hamburger-menu*/}
                 <div className="custom-dropdown-container-hamburger-menu min-[832px]:hidden">
                     <div className="dropdown-header-hamburger-menu" onClick={() => {
                         setIsVisibleHamburgerMenu(!isVisibleHamburgerMenu);
@@ -33,24 +50,6 @@ export const HeaderComponent = () => {
                         </div>
                     </div>}
                 </div>
-
-                {/*Logo*/}
-                <div className="flex items-center gap-3">
-                    <svg height="40px" width="40px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                         role="img"
-                         className="iconify iconify--emojione" preserveAspectRatio="xMidYMid meet" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <circle cx="32" cy="32" r="30" fill="#4fd1d9"></circle>
-                            <path fill="#ffffff" d="M25 12l20 20l-20 20z"></path>
-                        </g>
-                    </svg>
-                    <p>
-                        <Link to={''} className="logotext">KinoLand</Link>
-                    </p>
-                </div>
-
             </div>
 
             {/*Navigation*/}

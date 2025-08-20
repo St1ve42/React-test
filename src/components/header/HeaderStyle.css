@@ -127,7 +127,7 @@ input[type='search']:focus{
 
 .dropdown-list-hamburger-menu .dropdown-content {
     min-width: 430px;
-    left: -15px;
+    left: -170px;
     top: 22px
 }
 .dropdown-list-hamburger-menu:hover .dropdown{
@@ -144,15 +144,12 @@ input[type='search']:focus{
 }
 .dropdown-content-search{
     height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
+    padding: 12px;
     top: 50px;
     right: -100px;
     width: 75vw;
     margin: 5px 0 0 0;
-    /*background-color: #122038;*/
     background-color: #020C24;
     border-top: 2px solid black;
     z-index: 10;
@@ -164,5 +161,6 @@ input[type='search']:focus{
 .dropdown-content-search .dropdown-searched-content{
     min-width: 75vw;
     max-height: 550px;
-    left: -15px;
+    margin-top: 20px;
+    left: -12px;
 }
