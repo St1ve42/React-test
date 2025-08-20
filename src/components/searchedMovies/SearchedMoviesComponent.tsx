@@ -11,7 +11,7 @@ type PropsType = {
 
 export const SearchedMoviesComponent: FC<PropsType> = ({movie}) => {
     return (
-        <div className="mb-11 flex">
+        <div className="mb-5 flex">
             <div className="w-[40%] h-full">
                 {movie.poster_path ? <PosterPreviewComponent movie={movie}/> : <img className="h-[200px]" src={image_not_found} alt={"image not found"}/>}
             </div>
